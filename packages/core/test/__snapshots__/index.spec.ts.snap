@@ -1,0 +1,103 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`read dir 1`] = `
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "name": "post",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/post",
+          },
+          {
+            "children": [],
+            "name": "draft",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/draft",
+          },
+        ],
+        "name": "(group)",
+        "parent": [Circular],
+        "resolved": undefined,
+        "route": undefined,
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "name": "[[...optional]]",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/home/[[...optional]]",
+          },
+          {
+            "children": [],
+            "name": "park",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/home/park",
+          },
+        ],
+        "name": "home",
+        "parent": [Circular],
+        "resolved": undefined,
+        "route": "/home",
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [],
+                "name": "[...rest]",
+                "parent": [Circular],
+                "resolved": undefined,
+                "route": "/settings/[user]/[...rest]",
+              },
+              {
+                "children": [],
+                "name": "admin",
+                "parent": [Circular],
+                "resolved": undefined,
+                "route": "/settings/[user]/admin",
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "name": "inner",
+                    "parent": [Circular],
+                    "resolved": undefined,
+                    "route": "/settings/[user]/[role]/inner",
+                  },
+                ],
+                "name": "[role]",
+                "parent": [Circular],
+                "resolved": undefined,
+                "route": "/settings/[user]/[role]",
+              },
+            ],
+            "name": "[user]",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/settings/[user]",
+          },
+        ],
+        "name": "settings",
+        "parent": [Circular],
+        "resolved": undefined,
+        "route": "/settings",
+      },
+    ],
+    "name": "",
+    "parent": undefined,
+    "resolved": undefined,
+    "route": "/",
+  },
+]
+`;

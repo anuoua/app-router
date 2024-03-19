@@ -1,0 +1,21 @@
+{
+  "name": "@app-route/core",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "bun run build:js && bun run build:tsc",
+    "build:js": "bun build ./src/index.ts --outdir ./dist --target node",
+    "build:tsc": "tsc -p tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "glob": "^10.3.10"
+  }
+}
