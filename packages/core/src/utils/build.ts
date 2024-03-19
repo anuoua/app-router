@@ -1,10 +1,7 @@
 import path from "path";
 import { glob } from "glob";
+import { isGroup, isPrivate } from "./sort";
 import type { BasicTreeNode } from "../type";
-
-const isGroup = (segment: string) => {
-  return /^\(.*?\)$/.test(segment);
-};
 
 const buildTree = async (
   routePaths: string[],
@@ -26,6 +23,8 @@ const buildTree = async (
 
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
+
+      if (isPrivate(segment)) break;
 
       let childNode = currentNode.children?.find(
         (child) => child.name === segment

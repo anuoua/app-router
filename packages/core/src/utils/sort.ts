@@ -7,7 +7,11 @@ const WEIGHTS = {
   OptinalRestSlug: 6,
 };
 
-const MAX_SEGMENTS = 100;
+const MAX_SEGMENTS = 10;
+
+export const isPrivate = (segment: string) => {
+  return /^\_\w+$/.test(segment);
+};
 
 export const isGroup = (segment: string) => {
   return /^\(\w+\)$/.test(segment);

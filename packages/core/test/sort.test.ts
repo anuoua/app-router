@@ -12,10 +12,14 @@ it("sort", () => {
     "/abc/[...slug]",
     "/abc/a",
     "/abc/a/[[...slug]]",
+    "/abc/[a]/[[...slug]]",
+    "/abc/[a]/b",
   ]);
   expect(sortedRoutes).toMatchObject([
     "/abc/a/[[...slug]]",
     "/abc/a",
+    "/abc/[a]/b",
+    "/abc/[a]/[[...slug]]",
     "/abc/[slug]",
     "/abc/[...slug]",
     "/abc/[[...slug]]",
