@@ -3,7 +3,19 @@ import { existsSync } from "fs";
 import type { BasicTreeNode } from "@app-route/core";
 
 const extensions = ["js", "jsx", "mjs", "ts", "tsx"] as const;
-const targets = ["middleware", "handler"] as const;
+const targets = [
+  "middleware",
+  "handler",
+  "GET",
+  "POST",
+  "DELETE",
+  "PUT",
+  "OPTIONS",
+  "HEAD",
+  "PATCH",
+  "CONNECT",
+  "TRACE",
+] as const;
 
 export const resolve = async (node: BasicTreeNode) => {
   const existsSyncArray = (file: string, fold: string) => {
