@@ -1,5 +1,6 @@
 {
   "name": "@app-route/resolve-restful",
+  "version": "0.0.1-0",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +10,9 @@
     "build:js": "bun build ./index.ts --outdir ./dist --target node",
     "build:tsc": "tsc -p tsconfig.build.json"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/bun": "latest",
     "@app-route/core": "workspace:*"
