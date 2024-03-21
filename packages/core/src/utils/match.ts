@@ -7,13 +7,13 @@ import {
   isRestSlug,
 } from "./sort";
 
-export const match = (path: string, tree: BasicTreeNode[]) => {
+export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
   const segments = path.split("/");
   segments.shift();
 
-  const matched: BasicTreeNode[] = [];
+  const matched: BasicTreeNode<T>[] = [];
 
-  const walk = (segmentIndex: number, children: BasicTreeNode[]) => {
+  const walk = (segmentIndex: number, children: BasicTreeNode<T>[]) => {
     const segment = segments[segmentIndex];
 
     for (let i = 0; i < children.length; i++) {
