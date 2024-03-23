@@ -1,4 +1,12 @@
-import type { BasicTreeNode } from "../type";
+import type { BasicTreeNode } from "./type";
+import {
+  isExactName,
+  isExactSlug,
+  isGroup,
+  isOptionalRestSlug,
+  isPrivate,
+  isRestSlug,
+} from "./utils";
 
 const WEIGHTS = {
   Exact: 9,
@@ -8,30 +16,6 @@ const WEIGHTS = {
 };
 
 const MAX_SEGMENTS = 10;
-
-export const isPrivate = (segment: string) => {
-  return /^\_\w+$/.test(segment);
-};
-
-export const isGroup = (segment: string) => {
-  return /^\(\w+\)$/.test(segment);
-};
-
-export const isExactName = (segment: string) => {
-  return /^\w+$/.test(segment);
-};
-
-export const isExactSlug = (segment: string) => {
-  return /^\[\w+\]$/.test(segment);
-};
-
-export const isRestSlug = (segment: string) => {
-  return /^\[\.\.\.\w+\]$/.test(segment);
-};
-
-export const isOptionalRestSlug = (segment: string) => {
-  return /^\[\[\.\.\.\w+\]\]$/.test(segment);
-};
 
 export const getScore = (route: string) => {
   const segments = route.split("/");
@@ -63,6 +47,8 @@ export const getScore = (route: string) => {
   return score;
 };
 
-export const sort = (nodes: BasicTreeNode[]) => {
-  return [...nodes].sort((a, b) => getScore(b.route!) - getScore(a.route!));
+export const sort = <T extends BasicTreeNode>(
+  nodes: [T, Record<string, any>][]
+) => {
+  return [...nodes].sort(([a], [b]) => getScore(b.route!) - getScore(a.route!));
 };

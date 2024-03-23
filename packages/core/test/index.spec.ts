@@ -1,5 +1,5 @@
 import { it, expect } from "bun:test";
-import { build } from "../src/utils/build";
+import { build } from "../src/build";
 
 it("read dir", async () => {
   const result = await build("test/app", {

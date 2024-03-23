@@ -1,5 +1,5 @@
 import { it, expect } from "bun:test";
-import { getScore } from "../src/utils/sort";
+import { getScore } from "../src/sort";
 
 const sort = (routes: string[]) => {
   return [...routes].sort((a, b) => getScore(b) - getScore(a));

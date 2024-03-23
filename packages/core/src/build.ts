@@ -1,7 +1,7 @@
 import path from "path";
 import { glob } from "glob";
-import { isGroup, isPrivate } from "./sort";
-import type { BasicTreeNode } from "../type";
+import { isGroup, isPrivate } from "./utils";
+import type { BasicTreeNode } from "./type";
 
 const buildTree = async (
   routePaths: string[],
