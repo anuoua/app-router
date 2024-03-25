@@ -30,6 +30,13 @@ exports[`read dir 1`] = `
         "children": [
           {
             "children": [],
+            "name": "[id]",
+            "parent": [Circular],
+            "resolved": undefined,
+            "route": "/home/[id]",
+          },
+          {
+            "children": [],
             "name": "[[...optional]]",
             "parent": [Circular],
             "resolved": undefined,

@@ -44,13 +44,24 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
       } else if (isExactName(node.name)) {
         if (node.name === segment) {
           const isNextSegmentExist = !!segments[segmentIndex + 1];
-          const lastOptionalNode = node.children.find((child) =>
-            isOptionalRestSlug(child.name)
-          );
-          if (!isNextSegmentExist && !lastOptionalNode) {
-            matched.push([node, mergeParams([...paramsStack])]);
-          } else {
+          if (isNextSegmentExist) {
             walk(segmentIndex + 1, node.children);
+          } else {
+            const lastOptionalNode = node.children.find((child) =>
+              isOptionalRestSlug(child.name)
+            );
+            if (lastOptionalNode) {
+              const match = lastOptionalNode.name.match(
+                optionalRestSlugReg
+              ) as RegExpMatchArray;
+              paramsStack.push({
+                [match[1]]: segments.slice(segmentIndex),
+              });
+              matched.push([lastOptionalNode, mergeParams([...paramsStack])]);
+              paramsStack.pop();
+            } else {
+              matched.push([node, mergeParams([...paramsStack])]);
+            }
           }
         }
       } else if (isExactSlug(node.name)) {
