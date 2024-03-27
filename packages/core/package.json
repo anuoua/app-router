@@ -10,6 +10,9 @@
     "build:js": "bun build ./src/index.ts --outdir ./dist --target node --external glob",
     "build:tsc": "tsc -p tsconfig.build.json"
   },
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "files": [
     "dist"
   ],
