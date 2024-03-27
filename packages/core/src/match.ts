@@ -93,7 +93,7 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
     walk(0, root.children);
   }
 
-  const sorted = sort(matched);
+  const [first] = sort(matched);
 
-  return sorted[0];
+  return first as typeof first | undefined;
 };
