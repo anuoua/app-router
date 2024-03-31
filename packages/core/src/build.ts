@@ -1,6 +1,6 @@
 import path from "path";
 import { glob } from "glob";
-import { isGroup, isPrivate } from "./utils";
+import { isGroup, isParallel, isInterception, isPrivate } from "./utils";
 import type { BasicTreeNode } from "./type";
 
 const buildTree = async (
@@ -24,7 +24,8 @@ const buildTree = async (
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
 
-      if (isPrivate(segment)) break;
+      if (isPrivate(segment) || isParallel(segment) || isInterception(segment))
+        break;
 
       let childNode = currentNode.children?.find(
         (child) => child.name === segment
