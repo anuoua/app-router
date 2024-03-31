@@ -104,11 +104,9 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
 
   const [root] = tree;
 
-  if (segments[0] === "") {
-    matched.push([root, []]);
-  } else {
-    walk(0, root.children);
-  }
+  matched.push([root, []]);
+
+  walk(0, root.children);
 
   const [first] = sort(matched);
 
