@@ -12,6 +12,20 @@ import {
   restSlugReg,
 } from "./utils";
 
+const checkOptionalCatchAll = <T extends any>(node: BasicTreeNode<T>) => {
+  if (node.children.length)
+    throw new Error(
+      `Route name: ${node.name}, optional catch-all segments must be placed last`
+    );
+};
+
+const checkCatchAll = <T extends any>(node: BasicTreeNode<T>) => {
+  if (node.children.length)
+    throw new Error(
+      `Route name: ${node.name}, catch-all segments must be placed last`
+    );
+};
+
 export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
   const segments = path.split("/");
   segments.shift();
@@ -28,6 +42,7 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
       if (isGroup(node.name)) {
         walk(segmentIndex, node.children);
       } else if (isOptionalRestSlug(node.name)) {
+        checkOptionalCatchAll(node);
         const match = node.name.match(optionalRestSlugReg) as RegExpMatchArray;
         paramsStack.push({
           [match[1]]: segments.slice(segmentIndex),
@@ -35,6 +50,7 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
         matched.push([node, mergeParams([...paramsStack])]);
         paramsStack.pop();
       } else if (isRestSlug(node.name)) {
+        checkCatchAll(node);
         const match = node.name.match(restSlugReg) as RegExpMatchArray;
         paramsStack.push({
           [match[1]]: segments.slice(segmentIndex),
@@ -51,6 +67,7 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
               isOptionalRestSlug(child.name)
             );
             if (lastOptionalNode) {
+              checkOptionalCatchAll(lastOptionalNode);
               const match = lastOptionalNode.name.match(
                 optionalRestSlugReg
               ) as RegExpMatchArray;
@@ -80,7 +97,7 @@ export const match = <T>(path: string, tree: BasicTreeNode<T>[]) => {
         }
         paramsStack.pop();
       } else {
-        throw new Error(`Route name: "${node.name}" is not supported`);
+        throw new Error(`Route name: "${node.name}", is not supported`);
       }
     }
   };
