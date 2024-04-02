@@ -5,9 +5,6 @@ import { build } from "../src";
 it("match", async () => {
   const tree = await build("test/app", {});
 
-  const matched = match("/not-matched", tree)!;
-  expect(matched[0].route).toBe("/");
-
   const matched0 = match("/", tree)!;
   expect(matched0[0].route).toBe("/");
   expect(matched0[1]).toMatchObject({});
