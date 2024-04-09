@@ -1,4 +1,4 @@
-# app-route
+# App Route
 
 App route core package for js runtime, e.g `Node` `Bun`.
 
@@ -75,7 +75,7 @@ Corresponding URLs, routes, and parameter matching table
 
 Get Params in the interface
 
-## Node struct
+## Node Struct
 
 ```typescript
 interface BasicTreeNode<R = unknown> {
@@ -90,4 +90,4 @@ interface BasicTreeNode<R = unknown> {
 
 ## LICENSE
 
-MIT
+MIT @anuoua
